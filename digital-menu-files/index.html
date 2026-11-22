@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Menus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: warm, appetising, calm — a host handing you the menu.
+   IDEA: a bound restaurant menu with coloured divider tabs, one per kitchen.
+   PICTURE: each kitchen opens on its own full-width spread of real dishes.
+   COLOUR and TYPE: white page, charcoal ink, each kitchen's logo colour as its accent; Marcellus titles, Figtree text.
+   LAYOUT: sticky tab row, hero photo, courses as lists with dish photos at the right edge. */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#141312);--card:light-dark(#f6f4f1,#1e1c1a);--ink:light-dark(#1d1a17,#f1ede8);--mute:light-dark(#6b645c,#a8a097);--line:light-dark(#e7e2dc,#2e2b28);--ac:#e08a00}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Marcellus,Georgia,serif;font-weight:400;margin:0;text-wrap:balance}
+button{font:inherit;color:inherit}
+.top{padding:28px max(5vw,16px) 14px;max-width:1100px;margin:auto}
+.top h1{font-size:clamp(32px,6vw,48px);line-height:1.05}
+.top p{margin:6px 0 0;color:var(--mute)}
+.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:10px max(5vw,16px);max-width:1100px;margin:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--bg);cursor:pointer;font-weight:500;white-space:nowrap}
+.tab[aria-selected=true]{background:var(--c);border-color:var(--c);color:#fff}
+.tab:focus-visible,.dish button:focus-visible,.gal button:focus-visible,#q:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.search{max-width:1100px;margin:auto;padding:0 max(5vw,16px) 10px}
+#q{width:100%;min-height:44px;font-size:16px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+main{max-width:1100px;margin:auto;padding:0 max(5vw,16px) 40px}
+.hero{position:relative;margin:18px 0 8px;border-radius:20px;overflow:hidden;aspect-ratio:16/8;background:var(--ac)}
+.hero img{width:100%;height:100%;object-fit:cover;display:block}
+.hero .cap{position:absolute;inset:auto 0 0 0;padding:60px 22px 20px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff}
+.hero h2{font-size:clamp(30px,5.5vw,52px);line-height:1.05}
+.hero .sub{opacity:.9;margin-top:4px}
+.leaf{background:radial-gradient(circle at 20% 30%,#5fb548 0 18%,transparent 19%),radial-gradient(circle at 75% 65%,#2f7d2a 0 24%,transparent 25%),radial-gradient(circle at 55% 15%,#8fd16f 0 12%,transparent 13%),linear-gradient(135deg,#245c22,#3a8f2c)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:8px 48px}
+.course{padding-top:26px}
+.course h3{font-size:26px;line-height:1.1;color:var(--ac);padding-bottom:8px;border-bottom:2px solid var(--ac)}
+.course .note{color:var(--mute);font-size:14px;margin:6px 0 0}
+ul{list-style:none;margin:0;padding:0}
+.dish{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);min-height:64px}
+.dish .n{flex:1;font-size:17px}
+.dish .n small{display:block;color:var(--mute);font-size:14px}
+.dish button{flex:none;width:72px;height:72px;padding:0;border:0;border-radius:12px;overflow:hidden;cursor:zoom-in;background:var(--card)}
+.dish img,.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.gal h3{font-size:24px;margin:34px 0 12px}
+.gal .row{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.gal button{aspect-ratio:1;padding:0;border:0;border-radius:14px;overflow:hidden;cursor:zoom-in}
+.empty{padding:30px 0;color:var(--mute)}
+mark{background:color-mix(in srgb,var(--ac) 30%,transparent);color:inherit;border-radius:3px}
+.hit{font-size:13px;color:var(--mute);display:block}
+footer{text-align:center;color:var(--mute);font-size:14px;padding:30px 16px 40px;border-top:1px solid var(--line)}
+#lb{position:fixed;inset:0;z-index:20;background:rgba(10,9,8,.92);display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:100%;max-height:82vh;border-radius:12px}
+#lb p{color:#fff;margin:12px 0 0;font-size:17px;text-align:center}
+#lb button{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:0;background:#fff2;color:#fff;font-size:24px;cursor:pointer}
+.fade{animation:f .35s ease}@keyframes f{from{opacity:0;transform:translateY(6px)}}
+@media(prefers-reduced-motion:reduce){.fade{animation:none}}
+@media(max-width:600px){.hero{aspect-ratio:4/3;border-radius:16px}.dish button{width:64px;height:64px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Our Menus</h1>
+  <p>Seven kitchens, one table. Tap a cuisine, then tap any photo to see it larger.</p>
+</header>
+<div class="bar">
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Cuisines"></nav>
+  <div class="search"><input id="q" type="search" placeholder="Search every menu, e.g. prawns" aria-label="Search dishes"></div>
+</div>
+<main id="main"></main>
+<footer>Menus may change with the season. Please ask our team about allergies and dietary needs.</footer>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo"><button aria-label="Close">×</button><img alt=""><p></p></div>
+<script>
+{
+const M=[
+{id:"sri-lankan",tab:"Sri Lankan",name:"Sri Lankan Foods",sub:"Island flavours, curry leaf and coconut",c:"#d97a00",hero:"db409620",courses:[
+ ["Appetizers","",[["Crispy Bitter Gourd Salad","7e389c95"],["Gotukola Salad","ac7d5d10"]]],
+ ["From the Soup Kettle","Choose one",[["Coconut Cream Flavoured Curry Leaf Vegetable Soup","697e253c"],["Mixed Spice-Infused Tamarind Flavoured Rasam"]]],
+ ["Hot Chafing Dish","",[["Dunthel Bath, Curry Leaf & Fried Onions","e6155d79"],["Steamed Basmati","238dea03"],["Boneless Mutton Fried Stew","c8718c5a"],["Chicken Kalupol","d7ad01b8"],["Thora Fish Coconut Mustard","ba5887e8"],["Prawns Tempered with Drumstick Leaf","383b7661"],["Crispy Roast Paan / Fish Bun"],["Dhal with Spinach","103ed1f4"],["Potato Curry / Cashew Nut Curry","602d9239"],["Thibautu Pahi / Baby Jackfruit Abula"],["Kathurumurunga Mallum / Cutlets"],["Papadam / Coconut Sambol","ac8f9597"]]],
+ ["Dessert","",[["Watalappan / Fruit Salad"]]]],gal:["570b1136","ed93bccb","2438dd07"]},
+{id:"italian",tab:"Italian",name:"Il Luigi",sub:"Italian cuisine",c:"#1f7a3d",hero:"9df77393",courses:[
+ ["Salad","",[["Antipasto Salad with Bocconcini and Green Olive Tapenade","e335d1e4"],["Tuna White Bean Salad","",'Insalata di Tonno e Fagioli']]],
+ ["From the Soup Kettle","",[["Minestrone Parmesan Soup"],["Ribollita","",'Italian bean soup']]],
+ ["Rice","",[["Parmesan Risotto"],["Italian Rice Pilaf","206c71f4"]]],
+ ["Mains","",[["Chicken Parmigiana","",'Pollo alla Parmigiana'],["Grilled Mutton Chops & Garlic Scapes with Romesco Sauce"],["Garlic and Rosemary Stuffed Grilled Red Snapper"],["Southern Italian-Style Shell-Grilled Prawns with Salmoriglio"],["Arancini with Padano","871a5e96"],["Roasted Eggplant Parmesan","",'Parmigiana di Melanzane'],["Rustic Italian Vegetable Bake"],["Frittata / Sicilian Stuffed Peppers"],["Mini Pizza / Classic Italian Bruschetta"],["Focaccia Bread / Penne Arrabbiata"]]],
+ ["Dessert","",[["Authentic Italian Tiramisu"],["Italian Fruit Tart"]]]],gal:["9b9a5264","276c5ae5","af5bac54","ac4ff4c5","14f64ec3","de16d43c"]},
+{id:"indian",tab:"Indian",name:"Indian Menu",sub:"From Kashmir to the Malabar coast",c:"#e0611a",hero:"d919ee5a",courses:[
+ ["Salads","",[["Kachumber","ec13e74f"],["Sweet Corn Pomegranate Kosambari","23cf4af3"]]],
+ ["From the Soup Kettle","Choose one",[["Tomato Shorba"],["Vegetable Mulligatawny Soup"]]],
+ ["Hot Chafing Dish","",[["South Indian Hyderabadi Biryani","f2968689"],["Traditional Long-Grain Steamed Basmati Rice","4fd6675b"],["Kashmiri Mutton Rogan Josh","48118216"],["Butter Chicken","099ddb69"],["Malabar Fish Curry","1514bff4"],["Jinga Masala","",'Prawns'],["Dal Makhani / Palak Paneer"],["Aloo Gobi / North Indian Baingan Bharta","320426c8"],["Bhindi Masala / Cabbage Thoran","0ca64036"],["Kadai Vegetable"],["Butter Naan or Atta Chapatti","3757e118"]]],
+ ["Dessert","",[["Rasgulla / Gulab Jamun","6a1169c6"],["Curd and Treacle"]]]],gal:["14271dfc","c7287bb7","4c67ddaf"]},
+{id:"japanese",tab:"Japanese",name:"Premium Quality Japanese",sub:"Fresh, tasty, made with care",c:"#c8102e",hero:"a668d3cf",courses:[
+ ["Salad","",[["Japanese Crab Salad","0fa8148e"],["Carrot and Celery Salad with Orange Rice Vinegar Dressing","76bb7525"]]],
+ ["Soup","",[["Miso Soup","bbad6e35"],["Tonkotsu Ramen"]]],
+ ["Mains","",[["Japanese Fried Rice","5f423b51",'Yakimeshi'],["Teriyaki Chicken & Peanut Rice","ba45d9d2"],["Chicken Katsu Curry","7091d79b"],["Seer Teppanyaki","39a98550"],["Shrimp Tempura"],["Ika Yaki","811ce74e",'BBQ squid, Japanese-style'],["Grilled Mutton Skewers","f9e16a0e"],["Green Bean Gomaae"],["Greens and Tofu","",'Shungiku Shiraae'],["Stir-Fried Vegetables","",'Yasai Itame'],["Oven-Baked Sweet Potato Korokke"],["Sushi / Maki Roll / Sashimi","e6df7ff2"]]],
+ ["Dessert","",[["Castella Cake"],["Warabi Mochi","",'With homemade kuromitsu syrup']]]],gal:["c9569497","f2ed34ea"]},
+{id:"chinese",tab:"Chinese",name:"Chinese Restaurant",sub:"菜单 · Chinese menu",c:"#b3121b",hero:"abe98866",courses:[
+ ["Salad","",[["Roast Chicken Salad with Ginger Dressing"],["Spicy Sesame Coleslaw with Peanuts"]]],
+ ["From the Soup Kettle","Choose one",[["Vegetable Egg Drop Soup with Wakame","197ec05d"],["Napa Cabbage Tofu Soup"]]],
+ ["Hot Chafing Dish","",[["Fried Brown Rice with Snow Peas and Peanuts"],["Chinese Sticky Rice"],["Chow Fun Cantonese Noodles","d5d2c854"],["Crispy Sesame Chicken with Sticky Asian Sauce","5585d5c4"],["Chinese Steamed Whole Fish with Ginger Shallot Sauce","3e0b6148"],["Asian Chilli Garlic Prawns with Bean Sprouts"],["Crispy Hot Butter Cuttlefish","18be7261"],["Kung Pao Mixed Vegetables","a604975e"],["Tofu and Broccoli Stir-Fry"],["Sichuan-Style Eggplant","",'With oyster sauce'],["Sweet and Sour Baby Bok Choy with Baby Corn"],["Spring Rolls","7b298cf9",'Sweet and sour']]],
+ ["Dessert","",[["Coconut Tapioca Pudding with Mango and Lime"],["Cheesecake"]]]],gal:["d23d481d"]},
+{id:"korean",tab:"Korean",name:"Korean Food",sub:"Bold, bright and gochujang-spiced",c:"#1f4fa3",hero:"c4f4b113",courses:[
+ ["Salad","",[["Baby Bok Choy Kimchi Salad","c61806d9"],["Spicy Cucumber Salad","79592a52"]]],
+ ["Soup","",[["Kongnamul Guk","96490498",'Soybean sprout soup'],["Korean Seaweed Egg Drop Soup","85eede7b"]]],
+ ["Mains","",[["Bibimbap","bca55cad",'Korean mixed rice'],["Sweet and Savoury Korean Black Bean Sauce Noodles","6d113a09"],["Spicy Korean Fried Chicken with Gochujang Sauce","7e2b31cb"],["Cantonese Steamed Fish with Ginger and Spring Onion","17389544"],["Spicy Korean Gochujang Prawns","c944f150"],["Ojingeo Bokkeum","53e9cd48",'Korean spicy stir-fried squid'],["Garlic Ginger Bok Choy","c1958739"],["Korean-Style Glazed Mushrooms","a4a981e6"],["Vegetable Stir-Fry","58f144e7"]]],
+ ["Dessert","",[["Korean Sweet Rice Balls"],["Yakgwa"]]]],gal:[]},
+{id:"vietnamese",tab:"Vietnamese",name:"Vietnamese Food Lovers",sub:"Fresh herbs, bright broths",c:"#2f8a2a",hero:"",courses:[
+ ["Salad","",[["Vietnamese Squid Salad","",'Goi Muc'],["Chicken and Avocado Salad with Cabbage"],["Green Papaya Salad"],["Herring Salad","",'Goi Ca Trich']]],
+ ["Soup","",[["Sweet and Sour Fish Soup","",'Canh Chua Ca']]],
+ ["Main Course","",[["White Rice"],["Com Chien Rice"],["Garlic Noodles"],["Coconut Chicken Curry with Bread","",'Ca Ri Ga'],["Stir-Fried Crab with Ginger and Scallion"],["Caramelised Catfish","",'Ca Kho'],["Shrimp on Stick","",'Chao Tom'],["Goat Curry","",'Ca Ri De'],["Cai Thia","",'Bok choy'],["Rau Dot Bi","",'Pumpkin buds'],["Kohlrabi","",'Su Hao']]],
+ ["Dessert","",[["Assorted Cut Fruit"],["Ice Cream"],["Chocolate Cake"],["Cheesecake"]]]],gal:[]}
+];
+const $=s=>document.querySelector(s),img=x=>`${x}.jpg`;
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tabs=$("#tabs"),main=$("#main"),q=$("#q"),lb=$("#lb");
+tabs.innerHTML=M.map(m=>`<button class="tab" role="tab" id="t-${m.id}" data-id="${m.id}" style="--c:${m.c}" aria-selected="false">${m.tab}</button>`).join("");
+const dishLi=(d,hl)=>{const[n,p,s]=d;const t=hl?n.replace(new RegExp(`(${hl})`,"ig"),"<mark>$1</mark>"):esc(n);
+ return `<li class="dish"><span class="n">${t}${s?`<small>${esc(s)}</small>`:""}</span>${p?`<button data-img="${p}" data-cap="${esc(n)}" aria-label="Photo of ${esc(n)}"><img src="${img(p)}" alt="${esc(n)}" loading="lazy"></button>`:""}</li>`};
+function show(id){
+ const m=M.find(x=>x.id===id)||M[0];q.value="";
+ document.documentElement.style.setProperty("--ac",m.c);
+ for(const b of tabs.children)b.setAttribute("aria-selected",b.dataset.id===m.id);
+ $(`#t-${m.id}`).scrollIntoView({block:"nearest",inline:"center"});
+ main.innerHTML=`<div class="fade"><div class="hero ${m.hero?"":"leaf"}">${m.hero?`<img src="${img(m.hero)}" alt="A spread of ${m.tab} dishes">`:""}<div class="cap"><h2>${m.name}</h2><div class="sub">${m.sub}</div></div></div>
+ <div class="cols">${m.courses.map(([h,note,ds])=>`<section class="course"><h3>${h}</h3>${note?`<p class="note">${note}</p>`:""}<ul>${ds.map(d=>dishLi(d)).join("")}</ul></section>`).join("")}</div>
+ ${m.gal.length?`<section class="gal"><h3>More from the kitchen</h3><div class="row">${m.gal.map(x=>`<button data-img="${x}" data-cap="${m.name}" aria-label="Kitchen photo"><img src="${img(x)}" alt="Dish from ${m.name}" loading="lazy"></button>`).join("")}</div></section>`:""}</div>`;
+}
+function search(v){
+ const s=v.trim().toLowerCase();if(!s){route();return}
+ const r=s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+ const hits=M.flatMap(m=>m.courses.flatMap(([h,,ds])=>ds.filter(d=>(d[0]+" "+(d[2]||"")).toLowerCase().includes(s)).map(d=>({m,h,d}))));
+ for(const b of tabs.children)b.setAttribute("aria-selected","false");
+ document.documentElement.style.setProperty("--ac","#8a6a3a");
+ main.innerHTML=`<section class="course"><h3>${hits.length} dish${hits.length===1?"":"es"} found</h3><ul>${hits.map(({m,h,d})=>dishLi(d,r).replace('<span class="n">',`<span class="n"><span class="hit" style="color:${m.c}">${m.tab} · ${h}</span>`)).join("")}</ul>${hits.length?"":`<p class="empty">Nothing matches “${esc(v)}”. Try another word.</p>`}</section>`;
+}
+function route(){const h=location.hash.slice(1);show(M.some(m=>m.id===h)?h:M[0].id)}
+tabs.addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;if(location.hash==="#"+b.dataset.id)show(b.dataset.id);else location.hash=b.dataset.id;window.scrollTo({top:0})});
+addEventListener("hashchange",route);
+q.addEventListener("input",()=>search(q.value));
+main.addEventListener("click",e=>{const b=e.target.closest("[data-img]");if(!b)return;lb.querySelector("img").src=img(b.dataset.img);lb.querySelector("img").alt=b.dataset.cap;lb.querySelector("p").textContent=b.dataset.cap;lb.classList.add("on");lb.querySelector("button").focus()});
+lb.addEventListener("click",()=>lb.classList.remove("on"));
+addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("on")});
+route();
+}
+</script>
+</body>
+</html>
