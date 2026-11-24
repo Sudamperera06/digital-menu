@@ -53,6 +53,7 @@ ul{list-style:none;margin:0;padding:0}
 .empty{padding:30px 0;color:var(--mute)}
 mark{background:color-mix(in srgb,var(--ac) 30%,transparent);color:inherit;border-radius:3px}
 .hit{font-size:13px;color:var(--mute);display:block}
+.cred{margin-top:14px;text-align:start;max-width:760px;margin-inline:auto}.cred summary{cursor:pointer;min-height:44px;display:flex;align-items:center;justify-content:center}.cred ul{padding-left:18px;list-style:disc;font-size:13px}.cred a{color:inherit}
 footer{text-align:center;color:var(--mute);font-size:14px;padding:30px 16px 40px;border-top:1px solid var(--line)}
 #lb{position:fixed;inset:0;z-index:20;background:rgba(10,9,8,.92);display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
 #lb.on{display:flex}
@@ -74,7 +75,7 @@ footer{text-align:center;color:var(--mute);font-size:14px;padding:30px 16px 40px
   <div class="search"><input id="q" type="search" placeholder="Search every menu, e.g. prawns" aria-label="Search dishes"></div>
 </div>
 <main id="main"></main>
-<footer>Menus may change with the season. Please ask our team about allergies and dietary needs.</footer>
+<footer>Menus may change with the season. Please ask our team about allergies and dietary needs.<details class="cred"><summary>Photo credits</summary><p>Most photos are our own. Some dishes use free-licence photos from Wikimedia Commons, shown for illustration:</p><ul id="cred"></ul></details></footer>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Photo"><button aria-label="Close">×</button><img alt=""><p></p></div>
 <script>
 {
@@ -83,25 +84,25 @@ const M=[
  ["Appetizers","",[["Crispy Bitter Gourd Salad","7e389c95"],["Gotukola Salad","ac7d5d10"]]],
  ["From the Soup Kettle","Choose one",[["Coconut Cream Flavoured Curry Leaf Vegetable Soup","697e253c"],["Mixed Spice-Infused Tamarind Flavoured Rasam","rasam"]]],
  ["Hot Chafing Dish","",[["Dunthel Bath, Curry Leaf & Fried Onions","e6155d79"],["Steamed Basmati","238dea03"],["Boneless Mutton Fried Stew","c8718c5a"],["Chicken Kalupol","d7ad01b8"],["Thora Fish Coconut Mustard","ba5887e8"],["Prawns Tempered with Drumstick Leaf","383b7661"],["Crispy Roast Paan / Fish Bun","fishbun"],["Dhal with Spinach","103ed1f4"],["Potato Curry / Cashew Nut Curry","602d9239"],["Thibautu Pahi / Baby Jackfruit Abula","pahi"],["Kathurumurunga Mallum / Cutlets","cutlets"],["Papadam / Coconut Sambol","ac8f9597"]]],
- ["Dessert","",[["Watalappan / Fruit Salad"]]]],gal:["570b1136","ed93bccb","2438dd07"]},
+ ["Dessert","",[["Watalappan / Fruit Salad","w-watalappan"]]]],gal:["570b1136","ed93bccb","2438dd07"]},
 {id:"italian",tab:"Italian",name:"Il Luigi",sub:"Italian cuisine",c:"#1f7a3d",hero:"9df77393",courses:[
  ["Salad","",[["Antipasto Salad with Bocconcini and Green Olive Tapenade","e335d1e4"],["Tuna White Bean Salad","tunabean",'Insalata di Tonno e Fagioli']]],
  ["From the Soup Kettle","",[["Minestrone Parmesan Soup","minestrone"],["Ribollita","ribollita",'Italian bean soup']]],
  ["Rice","",[["Parmesan Risotto","ac4ff4c5"],["Italian Rice Pilaf","206c71f4"]]],
- ["Mains","",[["Chicken Parmigiana","",'Pollo alla Parmigiana'],["Grilled Mutton Chops & Garlic Scapes with Romesco Sauce"],["Garlic and Rosemary Stuffed Grilled Red Snapper","de16d43c"],["Southern Italian-Style Shell-Grilled Prawns with Salmoriglio"],["Arancini with Padano","871a5e96"],["Roasted Eggplant Parmesan","",'Parmigiana di Melanzane'],["Rustic Italian Vegetable Bake","14f64ec3"],["Frittata / Sicilian Stuffed Peppers"],["Mini Pizza / Classic Italian Bruschetta"],["Focaccia Bread / Penne Arrabbiata","af5bac54"]]],
- ["Dessert","",[["Authentic Italian Tiramisu"],["Italian Fruit Tart"]]]],gal:["9b9a5264","276c5ae5"]},
+ ["Mains","",[["Chicken Parmigiana","w-chickenparm",'Pollo alla Parmigiana'],["Grilled Mutton Chops & Garlic Scapes with Romesco Sauce","w-lambchops"],["Garlic and Rosemary Stuffed Grilled Red Snapper","de16d43c"],["Southern Italian-Style Shell-Grilled Prawns with Salmoriglio","w-prawns"],["Arancini with Padano","871a5e96"],["Roasted Eggplant Parmesan","w-eggplant",'Parmigiana di Melanzane'],["Rustic Italian Vegetable Bake","14f64ec3"],["Frittata / Sicilian Stuffed Peppers","w-frittata"],["Mini Pizza / Classic Italian Bruschetta","w-bruschetta"],["Focaccia Bread / Penne Arrabbiata","af5bac54"]]],
+ ["Dessert","",[["Authentic Italian Tiramisu","w-tiramisu"],["Italian Fruit Tart","w-fruittart"]]]],gal:["9b9a5264","276c5ae5"]},
 {id:"indian",tab:"Indian",name:"Indian Menu",sub:"From Kashmir to the Malabar coast",c:"#e0611a",hero:"d919ee5a",courses:[
  ["Salads","",[["Kachumber","ec13e74f"],["Sweet Corn Pomegranate Kosambari","23cf4af3"]]],
- ["From the Soup Kettle","Choose one",[["Tomato Shorba","shorba"],["Vegetable Mulligatawny Soup"]]],
- ["Hot Chafing Dish","",[["South Indian Hyderabadi Biryani","f2968689"],["Traditional Long-Grain Steamed Basmati Rice","4fd6675b"],["Kashmiri Mutton Rogan Josh","48118216"],["Butter Chicken","099ddb69"],["Malabar Fish Curry","1514bff4"],["Jinga Masala","jinga",'Prawns'],["Dal Makhani / Palak Paneer","dalmakhani"],["Aloo Gobi / North Indian Baingan Bharta","320426c8"],["Bhindi Masala / Cabbage Thoran","0ca64036"],["Kadai Vegetable"],["Butter Naan or Atta Chapatti","3757e118"]]],
- ["Dessert","",[["Rasgulla / Gulab Jamun","6a1169c6"],["Curd and Treacle"]]]],gal:["14271dfc","c7287bb7","4c67ddaf"]},
+ ["From the Soup Kettle","Choose one",[["Tomato Shorba","shorba"],["Vegetable Mulligatawny Soup","w-mulligatawny"]]],
+ ["Hot Chafing Dish","",[["South Indian Hyderabadi Biryani","f2968689"],["Traditional Long-Grain Steamed Basmati Rice","4fd6675b"],["Kashmiri Mutton Rogan Josh","48118216"],["Butter Chicken","099ddb69"],["Malabar Fish Curry","1514bff4"],["Jinga Masala","jinga",'Prawns'],["Dal Makhani / Palak Paneer","dalmakhani"],["Aloo Gobi / North Indian Baingan Bharta","320426c8"],["Bhindi Masala / Cabbage Thoran","0ca64036"],["Kadai Vegetable","w-kadai"],["Butter Naan or Atta Chapatti","3757e118"]]],
+ ["Dessert","",[["Rasgulla / Gulab Jamun","6a1169c6"],["Curd and Treacle","w-curd"]]]],gal:["14271dfc","c7287bb7","4c67ddaf"]},
 {id:"japanese",tab:"Japanese",name:"Premium Quality Japanese",sub:"Fresh, tasty, made with care",c:"#c8102e",hero:"a668d3cf",courses:[
  ["Salad","",[["Japanese Crab Salad","0fa8148e"],["Carrot and Celery Salad with Orange Rice Vinegar Dressing","76bb7525"]]],
  ["Soup","",[["Miso Soup","bbad6e35"],["Tonkotsu Ramen","ramen"]]],
  ["Mains","",[["Japanese Fried Rice","5f423b51",'Yakimeshi'],["Teriyaki Chicken & Peanut Rice","ba45d9d2"],["Chicken Katsu Curry","7091d79b"],["Seer Teppanyaki","39a98550"],["Shrimp Tempura","4fd84276"],["Ika Yaki","811ce74e",'BBQ squid, Japanese-style'],["Grilled Mutton Skewers","f9e16a0e"],["Green Bean Gomaae","b7ab85f8"],["Greens and Tofu","",'Shungiku Shiraae'],["Stir-Fried Vegetables","576e4bf5",'Yasai Itame'],["Oven-Baked Sweet Potato Korokke","1f14fd70"],["Sushi / Maki Roll / Sashimi","e6df7ff2"]]],
  ["Dessert","",[["Castella Cake","eb1cc958"],["Warabi Mochi","ea229d25",'With homemade kuromitsu syrup']]]],gal:["c9569497","f2ed34ea"]},
 {id:"chinese",tab:"Chinese",name:"Chinese Restaurant",sub:"菜单 · Chinese menu",c:"#b3121b",hero:"abe98866",courses:[
- ["Salad","",[["Roast Chicken Salad with Ginger Dressing","52ac6d05"],["Spicy Sesame Coleslaw with Peanuts"]]],
+ ["Salad","",[["Roast Chicken Salad with Ginger Dressing","52ac6d05"],["Spicy Sesame Coleslaw with Peanuts","w-coleslaw"]]],
  ["From the Soup Kettle","Choose one",[["Vegetable Egg Drop Soup with Wakame","197ec05d"],["Napa Cabbage Tofu Soup","4169c744"]]],
  ["Hot Chafing Dish","",[["Fried Brown Rice with Snow Peas and Peanuts","faca8a38"],["Chinese Sticky Rice","8ee412be"],["Chow Fun Cantonese Noodles","d5d2c854"],["Crispy Sesame Chicken with Sticky Asian Sauce","5585d5c4"],["Chinese Steamed Whole Fish with Ginger Shallot Sauce","3e0b6148"],["Asian Chilli Garlic Prawns with Bean Sprouts","a4a40c8c"],["Crispy Hot Butter Cuttlefish","18be7261"],["Kung Pao Mixed Vegetables","a604975e"],["Tofu and Broccoli Stir-Fry","4fa8b04e"],["Sichuan-Style Eggplant","2c18261a",'With oyster sauce'],["Sweet and Sour Baby Bok Choy with Baby Corn","1c9f0d62"],["Spring Rolls","7b298cf9",'Sweet and sour']]],
  ["Dessert","",[["Coconut Tapioca Pudding with Mango and Lime","6c8901e4"],["Cheesecake","c02710f3"]]]],gal:["d23d481d"]},
@@ -109,21 +110,23 @@ const M=[
  ["Salad","",[["Baby Bok Choy Kimchi Salad","c61806d9"],["Spicy Cucumber Salad","79592a52"]]],
  ["Soup","",[["Kongnamul Guk","96490498",'Soybean sprout soup'],["Korean Seaweed Egg Drop Soup","85eede7b"]]],
  ["Mains","",[["Bibimbap","bca55cad",'Korean mixed rice'],["Sweet and Savoury Korean Black Bean Sauce Noodles","6d113a09"],["Spicy Korean Fried Chicken with Gochujang Sauce","7e2b31cb"],["Cantonese Steamed Fish with Ginger and Spring Onion","17389544"],["Spicy Korean Gochujang Prawns","c944f150"],["Ojingeo Bokkeum","53e9cd48",'Korean spicy stir-fried squid'],["Garlic Ginger Bok Choy","c1958739"],["Korean-Style Glazed Mushrooms","a4a981e6"],["Vegetable Stir-Fry","58f144e7"]]],
- ["Dessert","",[["Korean Sweet Rice Balls"],["Yakgwa","2dee9346"]]]],gal:[]},
+ ["Dessert","",[["Korean Sweet Rice Balls","w-gyeongdan"],["Yakgwa","2dee9346"]]]],gal:[]},
 {id:"vietnamese",tab:"Vietnamese",name:"Vietnamese Food Lovers",sub:"Fresh herbs, bright broths",c:"#2f8a2a",hero:"d4dd7ee4",courses:[
- ["Salad","",[["Vietnamese Squid Salad","",'Goi Muc'],["Chicken and Avocado Salad with Cabbage"],["Green Papaya Salad"],["Herring Salad","",'Goi Ca Trich']]],
- ["Soup","",[["Sweet and Sour Fish Soup","",'Canh Chua Ca']]],
- ["Main Course","",[["White Rice"],["Com Chien Rice","a4a2a48b"],["Garlic Noodles"],["Coconut Chicken Curry with Bread","",'Ca Ri Ga'],["Stir-Fried Crab with Ginger and Scallion"],["Caramelised Catfish","",'Ca Kho'],["Shrimp on Stick","",'Chao Tom'],["Goat Curry","85ba065c",'Ca Ri De'],["Cai Thia","1c9f0d62",'Bok choy'],["Rau Dot Bi","8a5a7c97",'Pumpkin buds'],["Kohlrabi","",'Su Hao']]],
- ["Dessert","",[["Assorted Cut Fruit"],["Ice Cream"],["Chocolate Cake"],["Cheesecake"]]]],gal:[]}
+ ["Salad","",[["Vietnamese Squid Salad","",'Goi Muc'],["Chicken and Avocado Salad with Cabbage"],["Green Papaya Salad","w-papaya"],["Herring Salad","",'Goi Ca Trich']]],
+ ["Soup","",[["Sweet and Sour Fish Soup","w-canhchua",'Canh Chua Ca']]],
+ ["Main Course","",[["White Rice","w-whiterice"],["Com Chien Rice","a4a2a48b"],["Garlic Noodles","w-garlicnoodles"],["Coconut Chicken Curry with Bread","w-cariga",'Ca Ri Ga'],["Stir-Fried Crab with Ginger and Scallion","w-crab"],["Caramelised Catfish","w-cakho",'Ca Kho'],["Shrimp on Stick","w-chaotom",'Chao Tom'],["Goat Curry","85ba065c",'Ca Ri De'],["Cai Thia","1c9f0d62",'Bok choy'],["Rau Dot Bi","8a5a7c97",'Pumpkin buds'],["Kohlrabi","",'Su Hao']]],
+ ["Dessert","",[["Assorted Cut Fruit","w-fruit"],["Ice Cream","w-icecream"],["Chocolate Cake","w-chococake"],["Cheesecake","c02710f3"]]]],gal:[]}
 ];
-const $=s=>document.querySelector(s),img=x=>(K.includes(x)?'':N.includes(x)?'../':'../../')+x+'.jpg',K='rasam pahi cutlets tunabean minestrone ribollita jinga ramen'.split(' '),N='1c9f0d62 1f14fd70 2c18261a 2dee9346 4169c744 4fa8b04e 4fd84276 52ac6d05 576e4bf5 6c8901e4 85ba065c 8a5a7c97 8ee412be a4a2a48b a4a40c8c b7ab85f8 c02710f3 d4dd7ee4 dalmakhani ea229d25 eb1cc958 faca8a38 fishbun shorba rasam pahi cutlets tunabean minestrone ribollita jinga ramen'.split(' ');
+const WC={"w-watalappan": ["Watalappan-Sri_Lanka.jpg", "Ji-Elle", "CC BY-SA 3.0"], "w-chickenparm": ["Chicken_parmigiana.jpg", "Tristan Kenney", "CC BY 2.0"], "w-lambchops": ["Grilled_Lamb_Loin_Chops-01.jpg", "Naotake Murayama", "CC BY 2.0"], "w-prawns": ["Grilled_Shrimp_Skewers.jpg", "Eximiousincorp", "CC BY-SA 4.0"], "w-eggplant": ["Parmigiana_di_melanzane.jpg", "Schellenberg", "CC BY-SA 4.0"], "w-frittata": ["-2019-10-27_Potato_&_onion_frittata,_Cromer.JPG", "Wikimedia Commons contributor", "see file page"], "w-bruschetta": ["Tomato_Bruschetta.jpg", "Michael Spencer", "CC BY 2.0"], "w-tiramisu": ["Tiramisu_at_Pizzeria_Antico_(26176986453).jpg", "Ruth Hartnup", "CC BY 2.0"], "w-fruittart": ["Fruit_tart_from_Mirota_Bakery,_Yogyakarta_2015-03-15.jpg", "Crisco 1492", "see file page"], "w-mulligatawny": ["Mulligatawny-Soup_Mumbai.jpg", "GeoTrinity", "CC BY-SA 3.0"], "w-kadai": ["Kadhai_Vegetable.jpg", "Shuklachef", "CC BY-SA 4.0"], "w-curd": ["Curd_and_treacle.jpg", "Hafiz Issadeen", "CC BY 2.0"], "w-coleslaw": ["Bowl'o'Coleslaw_modified.jpg", "Stu Spivack", "see file page"], "w-gyeongdan": ["KOCIS_gyeongdan,_sweet_rice_balls_(4646996328).jpg", "Korea.net / KOCIS", "see file page"], "w-papaya": ["Gỏi_đu_đủ_khô_bò.jpg", "Wikimedia Commons contributor", "see file page"], "w-canhchua": ["Canh_chua_cá_diêu_hồng.jpg", "Phương Huy", "Public domain"], "w-whiterice": ["Steamed_rice_in_bowl_01.jpg", "Anna Frodesiak", "see file page"], "w-garlicnoodles": ["Pasta_with_plate_and_chopsticks.jpg", "Hungry Huy (hungryhuy.com)", "see file page"], "w-cariga": ["Bowl_of_Vietnamese_ca_ri,_chicken_curry.jpg", "Wikimedia Commons contributor", "see file page"], "w-crab": ["Stired-fried_Crab_with_Ginger_and_Spring_Onion.jpg", "Wikimedia Commons contributor", "see file page"], "w-cakho": ["Cá_kho_tộ,_cá_hú.jpg", "Charles Haynes", "see file page"], "w-chaotom": ["Chạo_tôm.jpg", "Wikimedia Commons contributor", "see file page"], "w-fruit": ["Tropical_Fruit_Platter.JPG", "Phoenixcatering", "see file page"], "w-icecream": ["Chocolate_sauce_and_vanilla_icrecream.jpg", "normanack", "see file page"], "w-chococake": ["Chocolate_cake_(1).jpg", "Leon Brooks", "Public domain"]};
+const fp=f=>"https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(f)+"?width=640";
+const $=s=>document.querySelector(s),img=x=>WC[x]?fp(WC[x][0]):(K.includes(x)?'':N.includes(x)?'../':'../../')+x+'.jpg',K='rasam pahi cutlets tunabean minestrone ribollita jinga ramen'.split(' '),N='1c9f0d62 1f14fd70 2c18261a 2dee9346 4169c744 4fa8b04e 4fd84276 52ac6d05 576e4bf5 6c8901e4 85ba065c 8a5a7c97 8ee412be a4a2a48b a4a40c8c b7ab85f8 c02710f3 d4dd7ee4 dalmakhani ea229d25 eb1cc958 faca8a38 fishbun shorba'.split(' ');
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tabs=$("#tabs"),main=$("#main"),q=$("#q"),lb=$("#lb");
 tabs.innerHTML=M.map(m=>`<button class="tab" role="tab" id="t-${m.id}" data-id="${m.id}" style="--c:${m.c}" aria-selected="false">${m.tab}</button>`).join("");
 const ICON={leaf:'<path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14Z"/><path d="M5 19 13 11"/>',soup:'<path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M9 4c0 2 2 2 2 4M14 4c0 2 2 2 2 4"/>',sweet:'<path d="M4 20h16v-7H4Z"/><path d="M4 13c2-3 14-3 16 0"/><path d="M12 6v3"/><circle cx="12" cy="5" r="1"/>',plate:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/>'};
 const kind=h=>/salad|appet/i.test(h)?"leaf":/soup/i.test(h)?"soup":/dessert/i.test(h)?"sweet":"plate";
 const dishLi=(d,hl,h="")=>{const[n,p,s]=d;const t=hl?n.replace(new RegExp(`(${hl})`,"ig"),"<mark>$1</mark>"):esc(n);
- return `<li class="dish"><span class="n">${t}${s?`<small>${esc(s)}</small>`:""}</span>${p?`<button data-img="${p}" data-cap="${esc(n)}" aria-label="Photo of ${esc(n)}"><img src="${img(p)}" alt="${esc(n)}" loading="lazy"></button>`:`<span class="ph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICON[kind(h)]}</svg></span>`}</li>`};
+ return `<li class="dish"><span class="n">${t}${s?`<small>${esc(s)}</small>`:""}</span>${p?`<button data-img="${p}" data-cap="${esc(n)}" aria-label="Photo of ${esc(n)}"><img src="${img(p)}" alt="${esc(n)}" loading="lazy" onerror="this.parentNode.replaceWith(Object.assign(document.createElement('span'),{className:'ph'}))"></button>`:`<span class="ph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICON[kind(h)]}</svg></span>`}</li>`};
 function show(id){
  const m=M.find(x=>x.id===id)||M[0];q.value="";
  document.documentElement.style.setProperty("--ac",m.c);
@@ -148,6 +151,7 @@ q.addEventListener("input",()=>search(q.value));
 main.addEventListener("click",e=>{const b=e.target.closest("[data-img]");if(!b)return;lb.querySelector("img").src=img(b.dataset.img);lb.querySelector("img").alt=b.dataset.cap;lb.querySelector("p").textContent=b.dataset.cap;lb.classList.add("on");lb.querySelector("button").focus()});
 lb.addEventListener("click",()=>lb.classList.remove("on"));
 addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("on")});
+$("#cred").innerHTML=Object.values(WC).map(([f,a,l])=>`<li><a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(f)}">${esc(f.replace(/_/g," ").replace(/\.(jpe?g|JPG)$/,""))}</a> by ${esc(a)} (${esc(l)})</li>`).join("");
 route();
 }
 </script>
