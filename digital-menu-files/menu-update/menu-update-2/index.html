@@ -116,7 +116,7 @@ const M=[
  ["Main Course","",[["White Rice"],["Com Chien Rice","a4a2a48b"],["Garlic Noodles"],["Coconut Chicken Curry with Bread","",'Ca Ri Ga'],["Stir-Fried Crab with Ginger and Scallion"],["Caramelised Catfish","",'Ca Kho'],["Shrimp on Stick","",'Chao Tom'],["Goat Curry","85ba065c",'Ca Ri De'],["Cai Thia","1c9f0d62",'Bok choy'],["Rau Dot Bi","8a5a7c97",'Pumpkin buds'],["Kohlrabi","",'Su Hao']]],
  ["Dessert","",[["Assorted Cut Fruit"],["Ice Cream"],["Chocolate Cake"],["Cheesecake"]]]],gal:[]}
 ];
-const $=s=>document.querySelector(s),img=x=>(N.includes(x)?'':'../')+x+'.jpg',N='1c9f0d62 1f14fd70 2c18261a 2dee9346 4169c744 4fa8b04e 4fd84276 52ac6d05 576e4bf5 6c8901e4 85ba065c 8a5a7c97 8ee412be a4a2a48b a4a40c8c b7ab85f8 c02710f3 d4dd7ee4 dalmakhani ea229d25 eb1cc958 faca8a38 fishbun shorba rasam pahi cutlets tunabean minestrone ribollita jinga ramen'.split(' ');
+const $=s=>document.querySelector(s),img=x=>(M.includes(x)?'':N.includes(x)?'../':'../../')+x+'.jpg',M='rasam pahi cutlets tunabean minestrone ribollita jinga ramen'.split(' '),N='1c9f0d62 1f14fd70 2c18261a 2dee9346 4169c744 4fa8b04e 4fd84276 52ac6d05 576e4bf5 6c8901e4 85ba065c 8a5a7c97 8ee412be a4a2a48b a4a40c8c b7ab85f8 c02710f3 d4dd7ee4 dalmakhani ea229d25 eb1cc958 faca8a38 fishbun shorba rasam pahi cutlets tunabean minestrone ribollita jinga ramen'.split(' ');
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tabs=$("#tabs"),main=$("#main"),q=$("#q"),lb=$("#lb");
 tabs.innerHTML=M.map(m=>`<button class="tab" role="tab" id="t-${m.id}" data-id="${m.id}" style="--c:${m.c}" aria-selected="false">${m.tab}</button>`).join("");
